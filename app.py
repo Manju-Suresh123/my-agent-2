@@ -37,6 +37,11 @@ API_KEY = setting("AI_API_KEY")
 BASE_URL = setting("AI_BASE_URL", "https://api.openai.com/v1")
 MODEL = setting("AI_MODEL", "gpt-4o-mini")
 
+if "generativelanguage.googleapis.com" in BASE_URL.lower():
+    BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
+    if MODEL in ("gemini-2.5-flash", "gemini-2.5"):
+        MODEL = "gemini-1.5-flash"
+
 STATUS_COLOUR = {"Green": "#16a34a", "Amber": "#d97706", "Red": "#dc2626"}
 SECTION_ICON = {"Highlights": "🌟", "Progress": "✅", "Risks": "⚠️", "Blockers": "⛔", "Next week": "📅"}
 
